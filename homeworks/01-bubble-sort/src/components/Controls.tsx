@@ -26,7 +26,7 @@ export default class Controls extends Component<Props, { speed: number }> {
                 {this.props.sorting === Sorting.NotRuning ? <button onClick={() => this.props.sort()}>Sort</button> : null}
                 {this.props.sorting === Sorting.Paused ? <button onClick={() => this.props.sort()}>Resume</button> : null}
                 <button onClick={() => this.props.newArr()}>Set new array</button>
-                <input type="range" max="1000" min="10" step="10" value={this.state.speed} onChange={(e) => this.handleChangeSpeed(e)}/><label>{this.state.speed}</label>
+                <input type="range" max="200" min="20" step="20" value={this.state.speed} onChange={(e) => this.handleChangeSpeed(e)}/><label>{this.state.speed}</label>
             </div>
         )
     }
