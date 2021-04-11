@@ -1,0 +1,13 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  width: 10px; 
+  border: 1px solid #50aedbe8;
+  border-radius: 3px;
+  background-color: skyblue;
+}
