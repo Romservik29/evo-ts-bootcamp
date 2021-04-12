@@ -1,4 +1,4 @@
-###DEMO 
+### DEMO 
 [1.Bubble-sort](https://master.d3q3jsno3yyegd.amplifyapp.com/)
 # Getting Started with Create React App
 
