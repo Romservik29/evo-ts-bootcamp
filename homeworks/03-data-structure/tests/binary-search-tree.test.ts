@@ -37,6 +37,5 @@ const searchTree = new BinarySearchTree(tree)
 it("has",()=>{
         expect(searchTree.has(8)).toBe(false)
         expect(searchTree.has(5)).toBe(true)
-        expect(searchTree.has(8)).toBe(false)
         expect(searchTree.has(5,{} as TreeNode<number>)).toBe(false)
 })

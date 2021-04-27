@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1619543172177" clover="3.2.0">
-  <project timestamp="1619543172177" name="All files">
+<coverage generated="1619543372565" clover="3.2.0">
+  <project timestamp="1619543372565" name="All files">
     <metrics statements="80" coveredstatements="80" conditionals="43" coveredconditionals="43" methods="17" coveredmethods="17" elements="140" coveredelements="140" complexity="0" loc="80" ncloc="80" packages="1" files="3" classes="3"/>
     <file name="binary-search-tree.ts" path="C:\Users\andre\OneDrive\Рабочий стол\evolution\evo-ts-bootcamp\homeworks\03-data-structure\algorithms\binary-search-tree.ts">
       <metrics statements="14" coveredstatements="14" conditionals="14" coveredconditionals="14" methods="3" coveredmethods="3"/>
