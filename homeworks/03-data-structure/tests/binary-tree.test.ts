@@ -1,4 +1,4 @@
-import { BinaryTree, TreeNode, Traverse, assertNever } from "./binary-tree"
+import { BinaryTree, TreeNode, Traverse, assertNever } from "../algorithms/binary-tree"
 
 const tree: TreeNode<number> = {
     value: 1,
@@ -41,7 +41,7 @@ it("create binary tree", () => {
 })
 it("setNewTree", () => {
     expect(binaryTree.setTree({ value: 1, left: null, right: null })).toStrictEqual(binaryTree)// not sure
-    binaryTree = new BinaryTree(tree)//return origin tree
+    binaryTree = new BinaryTree(tree)//origin tree
 })
 
 it("dfs", () => {
@@ -64,11 +64,18 @@ it("traverse", () => {
     expect(() => binaryTree.traverse({} as never)).toThrowError();
 })
 
-it("getColumn array", () => {
-    expect(binaryTree.getColumn(1)).toStrictEqual([3])
-    expect(binaryTree.getColumn(-1)).toStrictEqual([2])
-    expect(binaryTree.getColumn(0)).toStrictEqual([1, 5, 6])
+
+describe.each([
+    [1, [3]],
+    [-1, [2]],
+    [0, [1, 5, 6]]
+])('getColumn Function', (column, values) => {
+    test(`returns values: ${values} `, () => {
+        expect(binaryTree.getColumn(column)).toStrictEqual(values)
+    }
+    )
 })
+
 it("assert never", () => {
     expect(() => assertNever({} as never)).toThrowError()
 })
