@@ -100,4 +100,4 @@ class BinaryTree<T> implements IBinaryTree<T>, Dfs<T>{
     }
 }
 
-export { BinaryTree, TreeNode, Traverse, assertNever }
+export { BinaryTree,IBinaryTree, TreeNode, Traverse, assertNever }
