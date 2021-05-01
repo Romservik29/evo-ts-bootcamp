@@ -70,7 +70,6 @@ class BinaryTree<T> implements IBinaryTree<T>, Dfs<T> {
     } return [...this.postorder(node.left), ...this.postorder(node.right), node.value];
   }
 
-  // eslint-disable-next-line class-methods-use-this
   breadth(node: TreeNode<T>): T[] {
     const result: T[] = [];
     const queue: TreeNode<T>[] = [node];
@@ -78,15 +77,14 @@ class BinaryTree<T> implements IBinaryTree<T>, Dfs<T> {
       const currentNode = queue.shift();
       if (currentNode) {
         result.push(currentNode.value);
-          if (currentNode.left) {
-            queue.push(currentNode.left);
+        if (currentNode.left) {
+          queue.push(currentNode.left);
         }
 
         if (currentNode.right) {
           queue.push(currentNode.right);
         }
       }
-
     }
     return result;
   }

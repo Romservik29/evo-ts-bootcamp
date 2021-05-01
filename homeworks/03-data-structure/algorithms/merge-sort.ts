@@ -15,7 +15,7 @@ function merge<T>(left: T[], right: T[], fn: CompareFunction<T>): T[] {
             arr.push(left.shift()!)
         } else {
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            if (arr.length === 2) arr.push(right.shift()!)
+            arr.push(right.shift()!)
         }
     }
     return [...arr, ...left, ...right]

@@ -1,6 +1,6 @@
-import { BinaryTree, TreeNode, IBinaryTree } from "./binary-tree";
+import { BinaryTree, IBinaryTree, TreeNode } from "./binary-tree";
 
-interface BinarySearch extends BinaryTree<number> {
+interface BinarySearch extends IBinaryTree<number> {
     has: (searchVal: number, tree: TreeNode<number>) => boolean
 }
 
