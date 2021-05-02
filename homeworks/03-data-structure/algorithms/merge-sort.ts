@@ -1,4 +1,4 @@
-type CompareFunction<T> = (val1: T, val2: T) => 1 | 0 | -1
+type CompareFunction<T> = (val1: T, val2: T) => number
 
 function mergeSort<T>(array: T[], fn: CompareFunction<T>): T[] {
     if (array.length < 2) return array

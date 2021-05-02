@@ -1,19 +1,5 @@
-enum Traverse {
-  Preorder,
-  Inorder,
-  Postorder,
-  Breadth
-}
-const assertNever = (arg: never): never => {
-  throw new Error(`${arg}`);
-};
-
-interface Dfs<T> {
-  preorder: (node: TreeNode<T>) => T[]
-  inorder: (node: TreeNode<T>) => T[]
-  postorder: (node: TreeNode<T>) => T[]
-  breadth: (node: TreeNode<T>) => T[]
-}
+import { Traverse } from "./util/travers";
+import { assertNever } from "./util/assertNever";
 
 interface TreeNode<T> {
   value: T;
@@ -21,24 +7,22 @@ interface TreeNode<T> {
   right: TreeNode<T> | null;
 }
 interface IBinaryTree<T> {
+  //:TODO constructor
   setTree(tree: TreeNode<T>): this;
   traverse(travesrse: Traverse): T[];
   getColumn(columnOrder: number): T[];
 }
 
-class BinaryTree<T> implements IBinaryTree<T>, Dfs<T> {
-  rootTree: TreeNode<T>
+class BinaryTree<T> implements IBinaryTree<T>{
 
-  constructor(rootTree: TreeNode<T>) {
-    this.rootTree = rootTree;
-  }
+  constructor(public rootTree: TreeNode<T>) {}
 
-  setTree(tree: TreeNode<T>): this {
+  public setTree(tree: TreeNode<T>): this {
     this.rootTree = tree;
     return this;
   }
 
-  traverse(traverse: Traverse, tree = this.rootTree): T[] {
+  public traverse(traverse: Traverse, tree = this.rootTree): T[] {
     switch (traverse) {
       case Traverse.Inorder:
         return this.inorder(tree);
@@ -52,25 +36,25 @@ class BinaryTree<T> implements IBinaryTree<T>, Dfs<T> {
     }
   }
 
-  preorder(node: TreeNode<T> | null): T[] {
+  private preorder(node: TreeNode<T> | null): T[] {
     if (node === null) {
       return [];
     } return [node.value, ...this.preorder(node.left), ...this.preorder(node.right)];
   }
 
-  inorder(node: TreeNode<T> | null): T[] {
+  private inorder(node: TreeNode<T> | null): T[] {
     if (node === null) {
       return [];
     } return [...this.preorder(node.left), node.value, ...this.preorder(node.right)];
   }
 
-  postorder(node: TreeNode<T> | null): T[] {
+  private postorder(node: TreeNode<T> | null): T[] {
     if (node === null) {
       return [];
     } return [...this.postorder(node.left), ...this.postorder(node.right), node.value];
   }
 
-  breadth(node: TreeNode<T>): T[] {
+  private breadth(node: TreeNode<T>): T[] {
     const result: T[] = [];
     const queue: TreeNode<T>[] = [node];
     while (queue.length) {
@@ -89,7 +73,7 @@ class BinaryTree<T> implements IBinaryTree<T>, Dfs<T> {
     return result;
   }
 
-  getColumn(columnNumber: number): T[] {
+  public getColumn(columnNumber: number): T[] {
     return this.getColumnNodeValue(this.rootTree, columnNumber, 0);
   }
 
@@ -106,6 +90,4 @@ class BinaryTree<T> implements IBinaryTree<T>, Dfs<T> {
   }
 }
 
-export {
-  BinaryTree, IBinaryTree, TreeNode, Traverse, assertNever,
-};
+export {BinaryTree, IBinaryTree, TreeNode};

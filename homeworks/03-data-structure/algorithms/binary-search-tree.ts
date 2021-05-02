@@ -5,9 +5,10 @@ interface BinarySearch extends IBinaryTree<number> {
 }
 
 export class BinarySearchTree extends BinaryTree<number> implements BinarySearch {
-    constructor(rootNode: TreeNode<number>) {
-        super(rootNode)
+    constructor(public rootTree: TreeNode<number>) {
+        super(rootTree)
     }
+    
     has(serachValue: number, tree: TreeNode<number> = this.rootTree): boolean {
         if (tree.value === serachValue) {
             return true
