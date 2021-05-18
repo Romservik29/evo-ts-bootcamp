@@ -25,3 +25,16 @@ export async function getPizza() {
         ]
     };
 }
+export async function fetchLog(event: any) {
+    fetch('http://localhost:3001/log', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({event})
+    }).then((json) => {
+        console.log(event)
+    }).catch((ex) => {
+        console.log(ex)
+    });
+}
