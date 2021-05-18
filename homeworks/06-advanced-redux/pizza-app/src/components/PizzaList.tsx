@@ -1,23 +1,21 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { PizzaItem } from "./PizzaItem";
-import * as R from "ramda";
+import { State } from "../types";
+import { useDispatch, useSelector } from "react-redux";
+import { viewPizza } from "../redux/pizzaActions";
 
-interface PizzaListProps {
-    pizza: {
-        _id: string;
-        name: string;
-        price: number;
-    }[];
-    onAdd: (_id: string) => void;
-}
 
-export function PizzaList({ pizza, onAdd }: PizzaListProps) {
-    return R.map((p) =>
+export function PizzaList() {
+    const dispatch = useDispatch() 
+        useEffect(() => {
+        dispatch(viewPizza())
+    }, [dispatch])
+    const pizza = useSelector((state:State) => state.pizza)
+    return useMemo(()=>pizza.map(p=>
         <PizzaItem
             key={p._id}
             _id={p._id}
             name={p.name}
             price={p.price}
-            onAdd={onAdd}
-        />, pizza);
+        />),[pizza]);
 }

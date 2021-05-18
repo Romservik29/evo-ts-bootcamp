@@ -1,21 +1,16 @@
-import * as R from "ramda";
-import React from "react";
-import {Pizza} from "../types";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
+import { State} from "../types";
 import {PizzaBasketItem} from "./PizzaBasketItem";
 
-interface PizzaBucketProps {
-    pizza: Array<Pizza & {count: number}>,
-    onMinus: (_id: string) => void;
-}
-
-export function PizzaBasket({pizza, onMinus}: PizzaBucketProps) {
-    return R.map((p) =>
+export function PizzaBasket() {
+    const basket = useSelector((state:State)=> state.basket)
+    return useMemo(()=>basket.map((p) =>
         <PizzaBasketItem
             _id={p._id}
-            onMinus={onMinus}
             key={p._id}
             price={p.price}
             name={p.name}
             count={p.count}
-        />, pizza);
+        />),[basket]);
 }

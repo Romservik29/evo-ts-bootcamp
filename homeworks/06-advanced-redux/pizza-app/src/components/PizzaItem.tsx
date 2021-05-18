@@ -2,19 +2,21 @@ import React from "react";
 import { PizzaName } from "./PizzaName";
 import { PizzaPrice } from "./PizzaPrice";
 import { Circle } from "./Circle";
+import { useDispatch } from "react-redux";
+import { selectPizza } from "../redux/pizzaActions";
 
 interface PizzaItemProps {
     _id: string,
     name: string,
     price: number,
-    onAdd: (_id: string) => void;
 }
 
-export function PizzaItem({ onAdd, price, _id }: PizzaItemProps) {
+export function PizzaItem({ price, _id ,name }: PizzaItemProps) {
+    const dispatch = useDispatch()
     const onClick = React.useCallback(() => {
-        onAdd(_id);
-    }, [onAdd, _id]);
-
+        dispatch(selectPizza(_id))
+    }, [dispatch,_id]);
+    
     return (
         <div className="flex flex-col bg-white rounded-xl shadow-md m-1 p-1">
             <div className="flex justify-center">
@@ -24,7 +26,7 @@ export function PizzaItem({ onAdd, price, _id }: PizzaItemProps) {
             </div>
             <div className="flex p-2">
                 <div className="w-full">
-                    <PizzaName name="Italian pizza" />
+                    <PizzaName name={name} />
                     <PizzaPrice price={price} />
                 </div>
                 <Circle onClick={onClick} type="plus" />

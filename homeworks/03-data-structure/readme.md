@@ -1,12 +1,13 @@
-[x]Implement BinaryTree interface.
-[x]Develop BinaryTree class that implements BinaryTree interface.
-[x]BinaryTree class has to be generic and able to define a node value.
-[x]Implement BinarySearchTree interface that extends BinaryTree interface.
-[x]Develop BinarySearchTree class that implements BinarySearchTree interface and extends BinaryTree class.
-[x]BinarySearchTree class has to have a numeric node value (not a generic class).
-[x]Develop the mergeSort function.
-[x-]Cover all the code with tests (via jest). Coverage has to be 100%.
-[x]DO NOT FORGET to define all types and access modifiers where needed.
+
+* [x]Implement BinaryTree interface.
+* [x]Develop BinaryTree class that implements BinaryTree interface.
+* [x]BinaryTree class has to be generic and able to define a node value.
+* [x]Implement BinarySearchTree interface that extends BinaryTree interface.
+* [x]Develop BinarySearchTree class that implements BinarySearchTree interface and extends BinaryTree class.
+* [x]BinarySearchTree class has to have a numeric node value (not a generic class).
+* [x]Develop the mergeSort function.
+* [x-]Cover all the code with tests (via jest). Coverage has to be 100%.
+* [x]DO NOT FORGET to define all types and access modifiers where needed.
 
 Test Suites: 3 passed, 3 total
 Tests:       11 passed, 11 total
