@@ -20,14 +20,18 @@ export default function Controls(): JSX.Element {
       display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column',
     }}
     >
-      <SelectRover />
+
       <SelectAlbum />
       <div>
         <h3>
           Select Sol and press button &apos;load&apos;
         </h3>
       </div>
-      <div>
+      <div style={{
+        display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center',
+      }}
+      >
+        <SelectRover />
         <label>
           Sol
           <NumberInput />

@@ -7,7 +7,7 @@ import MarsPhoto from './MarsPhoto';
 export default function PhotoContainer(): JSX.Element {
   const selectPhotos = useSelector((state: RootState) => {
     const photos: Photo[] = [];
-    state.mars.sols[state.mars.sols.length - 1].photosId.forEach((id) => {
+    state.mars.sols[state.mars.sols.length - 1]?.photosId.forEach((id) => {
       const photo = state.mars.photos.find((p) => p.id === id);
       return photo && photos.push(photo);
     });
@@ -33,6 +33,7 @@ export default function PhotoContainer(): JSX.Element {
       {selectRoute === 'gallery'
         ? selectPhotos.map((p) => <MarsPhoto photo={p} />)
         : selectFavorites.map((p) => <MarsPhoto photo={p} />)}
+      {!selectPhotos[0] && <div>Sorry photos not found!</div>}
     </div>
   );
 }

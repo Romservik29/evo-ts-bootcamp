@@ -5,7 +5,7 @@ import PhotoContainer from './components/PhotoContainer';
 import Controls from './components/Controls';
 import { getPhotos } from './features/marsGallery/marsGallerySlice';
 import { RootState } from './app/store';
-import { Status } from './components/Status';
+import { Status } from './components/Loader';
 
 function App(): JSX.Element {
   const dispatch = useDispatch();
