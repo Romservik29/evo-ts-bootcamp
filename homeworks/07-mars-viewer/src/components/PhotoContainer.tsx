@@ -31,7 +31,7 @@ export default function PhotoContainer(): JSX.Element {
     }}
     >
       {selectRoute === 'gallery'
-        ? selectPhotos.map((p) => <MarsPhoto photo={p} />)
+        ? selectPhotos.map((p) => <MarsPhoto key={p.id} photo={p} />)
         : selectFavorites.map((p) => <MarsPhoto photo={p} />)}
       {!selectPhotos[0] && <div>Sorry photos not found!</div>}
     </div>

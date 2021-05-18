@@ -8,14 +8,14 @@ export default function SelectRover(): JSX.Element {
   const rovers = useSelector((state: RootState) => state.mars.rovers);
   const dispatch = useDispatch();
   const selectCurrentRover = useSelector((state: RootState) => state.controls.rover);
-  const handleClick = (e: React.MouseEvent<HTMLOptionElement, MouseEvent>) => {
-    dispatch(setRover(e.currentTarget.value as Rover));
+  const handleClick = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(setRover(e.target.value as Rover));
   };
 
   return (
     <div>
-      <select value={selectCurrentRover}>
-        {rovers.map((v) => <option onClick={handleClick}>{v}</option>)}
+      <select onChange={handleClick} value={selectCurrentRover}>
+        {rovers.map((v) => <option key={v}>{v}</option>)}
       </select>
     </div>
   );
