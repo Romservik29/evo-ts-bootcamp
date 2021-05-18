@@ -14,11 +14,11 @@ type MarsPhotoPros = {
 export default function MarsPhoto({ photo }: MarsPhotoPros): JSX.Element {
   const dispatch = useDispatch();
   const like = useSelector(
-    ((state: RootState) => state.mars.favorites.some((p) => p.id === photo.id)),
+    ((state: RootState) => state.mars.favorites.some((id) => id === photo.id)),
   );
   const likeToggle = () => {
-    like || dispatch(addToFavorites(photo));
-    like && dispatch(removeFromFavorites(photo));
+    like || dispatch(addToFavorites(photo.id));
+    like && dispatch(removeFromFavorites(photo.id));
   };
   return (
     <div style={{ position: 'relative' }}>

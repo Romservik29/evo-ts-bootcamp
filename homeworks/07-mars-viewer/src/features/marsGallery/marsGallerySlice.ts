@@ -7,17 +7,28 @@ import {
 } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Photo } from '../../types';
+import { Rover } from './rovers';
+
+type Rovers = [Rover.Curiosity, Rover.Opportunity, Rover.Perseverance, Rover.Spirit];
+type Sol = {
+  sol: number,
+  photosId: number[]
+};
 
 export interface MarsGallery {
   photos: Photo[]
-  favorites: Photo[],
-  isFetching: boolean
+  favorites: number[],
+  sols: Array<Sol>,
+  isFetching: boolean,
+  rovers: Rovers,
 }
 
 const initialState: MarsGallery = {
   photos: [],
   favorites: [],
+  sols: [],
   isFetching: false,
+  rovers: [Rover.Curiosity, Rover.Opportunity, Rover.Perseverance, Rover.Spirit],
 };
 
 const marsGallerySlice = createSlice({
@@ -25,13 +36,16 @@ const marsGallerySlice = createSlice({
   initialState,
   reducers: {
     setPhotos: (state, action: PayloadAction<Photo[]>) => {
-      state.photos = action.payload;
+      state.photos = [...state.photos, ...action.payload];
     },
-    addToFavorites: (state, action: PayloadAction<Photo>) => {
+    addToFavorites: (state, action: PayloadAction<number>) => {
       state.favorites.unshift(action.payload);
     },
-    removeFromFavorites: (state, action: PayloadAction<Photo>) => {
-      state.favorites = state.favorites.filter((p) => p.id !== action.payload.id);
+    removeFromFavorites: (state, action: PayloadAction<number>) => {
+      state.favorites = state.favorites.filter((id) => id !== action.payload);
+    },
+    addSol: (state, action: PayloadAction<Sol>) => {
+      state.sols.push(action.payload);
     },
     startFetching: (state) => {
       state.isFetching = true;
@@ -43,16 +57,17 @@ const marsGallerySlice = createSlice({
 });
 
 export const {
-  startFetching, endFetching, setPhotos, addToFavorites, removeFromFavorites,
+  addSol, startFetching, endFetching, setPhotos, addToFavorites, removeFromFavorites,
 } = marsGallerySlice.actions;
 
-export const getPhotos = (sol: number) => (
+export const getPhotos = (sol: number, rover: keyof typeof Rover) => (
   dispatch: ThunkDispatch<MarsGallery, MarsGallery, AnyAction>,
 ) => {
   dispatch(startFetching());
-  axios.get(`https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?sol=${sol}&api_key=${process.env.REACT_APP_NASA_KEY}`).then((res) => {
+  axios.get(`https://api.nasa.gov/mars-photos/api/v1/rovers/${rover}/photos?sol=${sol}&api_key=${process.env.REACT_APP_NASA_KEY}`).then((res) => {
     const photos = res.data.photos as Photo[];
     dispatch(setPhotos(photos));
+    dispatch(addSol({ sol, photosId: photos.map((p) => p.id) }));
     setTimeout(() => dispatch(endFetching()));
   }).catch(() => { dispatch(endFetching()); });
 };

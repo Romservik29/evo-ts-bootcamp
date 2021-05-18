@@ -3,10 +3,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Rover } from '../marsGallery/rovers';
 
+type AnyRover = keyof typeof Rover;
+
 export interface ControlsReducer {
   sols: number,
   route: 'gallery' | 'favorite',
-  rover: keyof typeof Rover,
+  rover: AnyRover,
 }
 
 const initialState: ControlsReducer = {
@@ -31,6 +33,6 @@ const controlSlice = createSlice({
   },
 });
 
-export const { setRoute, setSol } = controlSlice.actions;
+export const { setRoute, setSol, setRover } = controlSlice.actions;
 
 export default controlSlice.reducer;

@@ -10,8 +10,10 @@ import SelectRover from './SelectRover';
 export default function Controls(): JSX.Element {
   const dispatch = useDispatch();
   const sol = useSelector((state: RootState) => state.controls.sols);
+  const selectCurrentRover = useSelector((state: RootState) => state.controls.rover);
+
   const fetchPhoto = () => {
-    dispatch(getPhotos(sol));
+    dispatch(getPhotos(sol, selectCurrentRover));
   };
   return (
     <div style={{

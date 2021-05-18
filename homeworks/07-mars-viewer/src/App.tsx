@@ -5,20 +5,22 @@ import PhotoContainer from './components/PhotoContainer';
 import Controls from './components/Controls';
 import { getPhotos } from './features/marsGallery/marsGallerySlice';
 import { RootState } from './app/store';
-import { Loader } from './components/Loader';
+import { Status } from './components/Status';
 
 function App(): JSX.Element {
   const dispatch = useDispatch();
   const loading = useSelector((state: RootState) => state.mars.isFetching);
+  const selectCurrentRover = useSelector((state: RootState) => state.controls.rover);
+
   useEffect(() => {
-    dispatch(getPhotos(1));
+    dispatch(getPhotos(1, selectCurrentRover));
   },
-  [dispatch]);
+  [dispatch, selectCurrentRover]);
   return (
     <div className="App">
       <Controls />
       {loading
-        ? <Loader />
+        ? <Status />
         : <PhotoContainer />}
     </div>
   );
