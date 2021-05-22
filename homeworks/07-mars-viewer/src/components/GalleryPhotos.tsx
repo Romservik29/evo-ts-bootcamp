@@ -19,10 +19,10 @@ export default function GalleryPhotos(): JSX.Element {
     return photos;
   }, [selectSol, selectPhotos]);
 
-  return (
+  return filtredPhoto[0] ? (
     <>
       {filtredPhoto.map((p) => <MarsPhoto photo={p} />)}
     </>
 
-  );
+  ) : <span>Photos not found</span>;
 }

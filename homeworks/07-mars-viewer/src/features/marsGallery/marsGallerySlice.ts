@@ -7,6 +7,7 @@ import {
 } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { Photo } from '../../types';
+import { endFetching, startFetching } from '../control/controlSlice';
 import { Rover } from './rovers';
 
 type Rovers = [Rover.Curiosity, Rover.Opportunity, Rover.Perseverance, Rover.Spirit];
@@ -19,7 +20,6 @@ export interface MarsGallery {
   photos: Photo[]
   favorites: number[],
   sols: Array<Sol>,
-  isFetching: boolean,
   rovers: Rovers,
 }
 
@@ -27,7 +27,6 @@ const initialState: MarsGallery = {
   photos: [],
   favorites: [],
   sols: [],
-  isFetching: false,
   rovers: [Rover.Curiosity, Rover.Opportunity, Rover.Perseverance, Rover.Spirit],
 };
 
@@ -47,17 +46,11 @@ const marsGallerySlice = createSlice({
     addSol: (state, action: PayloadAction<Sol>) => {
       state.sols.push(action.payload);
     },
-    startFetching: (state) => {
-      state.isFetching = true;
-    },
-    endFetching: (state) => {
-      state.isFetching = false;
-    },
   },
 });
 
 export const {
-  addSol, startFetching, endFetching, setPhotos, addToFavorites, removeFromFavorites,
+  addSol, setPhotos, addToFavorites, removeFromFavorites,
 } = marsGallerySlice.actions;
 
 export const getPhotos = (sol: number, rover: keyof typeof Rover) => (

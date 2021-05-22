@@ -1,9 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/store';
 
-export function Status(): JSX.Element {
-  return (
-    <div style={{ display: 'flex', width: '100%', justifyContent: 'center' }}>
+export function Loader(): JSX.Element | null {
+  const loading = useSelector((state: RootState) => state.controls.isFetching);
+  return loading ? (
+    <span>
       Loading...
-    </div>
-  );
+    </span>
+  )
+    : null;
 }

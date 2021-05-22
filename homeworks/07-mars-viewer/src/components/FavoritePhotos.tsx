@@ -16,10 +16,9 @@ export default function FavoritePhotos(): JSX.Element {
     });
     return photos;
   }, [selectFavorites, selectPhotos]);
-  return (
+  return filtredFavorites[0] ? (
     <>
       {filtredFavorites.map((p) => <MarsPhoto photo={p} />)}
     </>
-
-  );
+  ) : <span>You have not favorites photo</span>;
 }

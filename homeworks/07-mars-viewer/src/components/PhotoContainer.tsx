@@ -8,7 +8,7 @@ export default function PhotoContainer(): JSX.Element {
   return (
     <div style={{
       display: 'grid',
-      gridTemplateColumns: '1fr 1fr 1fr',
+      gridTemplateColumns: 'repeat(auto-fill,minmax(300px,auto))',
       gridGap: 10,
       margin: 10,
     }}
@@ -18,7 +18,6 @@ export default function PhotoContainer(): JSX.Element {
           ? <GalleryPhotos />
           : <FavoritePhotos />
       }
-
     </div>
   );
 }
