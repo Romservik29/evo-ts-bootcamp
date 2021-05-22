@@ -1,26 +1,9 @@
-import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
-import { Photo } from '../types';
-import MarsPhoto from './MarsPhoto';
+import FavoritePhotos from './FavoritePhotos';
+import GalleryPhotos from './GalleryPhotos';
 
 export default function PhotoContainer(): JSX.Element {
-  const selectPhotos = useSelector((state: RootState) => {
-    const photos: Photo[] = [];
-    state.mars.sols[state.mars.sols.length - 1]?.photosId.forEach((id) => {
-      const photo = state.mars.photos.find((p) => p.id === id);
-      return photo && photos.push(photo);
-    });
-    return photos;
-  });
-  const selectFavorites = useSelector((state: RootState) => {
-    const favorites: Photo[] = [];
-    state.mars.favorites.forEach((id) => {
-      const photo = state.mars.photos.find((p) => p.id === id);
-      return photo && favorites.push(photo);
-    });
-    return favorites;
-  });
   const selectRoute = useSelector((state: RootState) => state.controls.route);
   return (
     <div style={{
@@ -30,10 +13,12 @@ export default function PhotoContainer(): JSX.Element {
       margin: 10,
     }}
     >
-      {selectRoute === 'gallery'
-        ? selectPhotos.map((p) => <MarsPhoto key={p.id} photo={p} />)
-        : selectFavorites.map((p) => <MarsPhoto photo={p} />)}
-      {!selectPhotos[0] && <div>Sorry photos not found!</div>}
+      {
+        selectRoute === 'gallery'
+          ? <GalleryPhotos />
+          : <FavoritePhotos />
+      }
+
     </div>
   );
 }
