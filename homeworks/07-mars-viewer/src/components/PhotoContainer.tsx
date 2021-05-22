@@ -8,7 +8,7 @@ export default function PhotoContainer(): JSX.Element {
   return (
     <div style={{
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill,minmax(300px,auto))',
+      gridTemplateColumns: 'repeat(auto-fill,minmax(400px,auto))',
       gridGap: 10,
       margin: 10,
     }}
