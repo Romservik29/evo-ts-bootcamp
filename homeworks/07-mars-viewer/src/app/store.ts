@@ -4,13 +4,7 @@ import thunk from 'redux-thunk';
 import controls from '../features/control/controlSlice';
 import mars from '../features/marsGallery/marsGallerySlice';
 
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-  }
-}
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers = compose;
 const store = configureStore({
   reducer: {
     mars,
