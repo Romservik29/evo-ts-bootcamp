@@ -1,3 +1,3 @@
 run: yarn dev
 build: yarn build
-demo: 
+demo: [worst-cat-catcher](http://worst-cats-catcher.surge.sh/)
