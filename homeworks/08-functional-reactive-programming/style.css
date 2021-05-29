@@ -1,0 +1,8 @@
+body{
+  width: 100%;
+}
+canvas {
+  border: 1px solid #000000;
+  cursor: grab;
+  background-image: url(https://im0-tub-by.yandex.net/i?id=6388cc16c60c1e06364d126f95345e4f&n=13&exp=1);
+}
