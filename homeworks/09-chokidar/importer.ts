@@ -5,18 +5,17 @@ import * as path from "path";
 
 export class Importer {
     listenCopier(watcher: DirWatcher): void {
+        const convertedFiles: string[] = [];
         watcher
             .eventEmmiter
             .on('changed', () => {
                 for (const file of watcher.files) {
-                    if (path.extname(file) === '.csv') {
-                        const pathJson = path.join(path.dirname(file), path.basename(file, path.extname(file)) + '.json')
+                    const fileName = path.basename(file, path.extname(file))
+                    if (path.extname(file) === '.csv' && convertedFiles.find((f) => fileName === f) === undefined) {
+                        convertedFiles.push(fileName)
+                        const pathJson = path.join(path.dirname(file), fileName + '.json')
                         this.import(file)
-                            .then((res) => {
-                                this.copyImport(JSON.stringify(res), pathJson)
-                                console.log("done")
-                            }
-                            )
+                        .then((res) => this.copyImport(JSON.stringify(res), pathJson))
                     }
                 }
             })
