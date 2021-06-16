@@ -5,13 +5,12 @@ import * as path from "path";
 export class DirWatcher {
     files: string[] = [];
     watchIntervaId: NodeJS.Timer;
-    eventEmmiter: EventEmitter;
-    constructor() {
-        this.eventEmmiter = new EventEmitter()
+    _eventEmmiter: EventEmitter;
+    constructor(em: EventEmitter) {
+        this._eventEmmiter = em
     }
-    watch(dirPath: string, delay: number): void {
+    watch(dirPath: string, delay = 100): void {
         let lastFiles: string[];
-        let first: boolean = true;
         this.watchIntervaId = setInterval(() => {
             fs.readdir(
                 dirPath, async (err, files: string[]) => {
@@ -25,7 +24,7 @@ export class DirWatcher {
                     lastFiles = newFiles
                     if (JSON.stringify(this.files) !== JSON.stringify(lastFiles)) {
                         this.files = newFiles
-                        this.eventEmmiter.emit('changed')
+                        this._eventEmmiter.emit('changed')
                     }
                 })
         }, delay)

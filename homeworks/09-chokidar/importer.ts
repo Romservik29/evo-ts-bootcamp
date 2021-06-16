@@ -7,7 +7,7 @@ export class Importer {
     listenCopier(watcher: DirWatcher): void {
         const convertedFiles: string[] = [];
         watcher
-            .eventEmmiter
+            ._eventEmmiter
             .on('changed', () => {
                 for (const file of watcher.files) {
                     const fileName = path.basename(file, path.extname(file))
