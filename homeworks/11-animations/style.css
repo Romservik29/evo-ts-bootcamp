@@ -1,0 +1,76 @@
+.hex{
+    animation: blink 2.5s infinite;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+#line{
+    animation: spin 2.5s cubic-bezier(0.76, 0.53, 0, 0.93) infinite reverse;
+    transform-origin: center;
+}
+#hex1{
+    animation-delay: 150ms;
+}
+#hex2{
+    animation-delay: 300ms;
+}
+#hex3{
+    animation-delay: 450ms;
+}
+#hex4{
+    animation-delay: 600ms;
+}
+#hex5{
+    animation-delay: 750ms;
+}
+#hex6{
+    animation-delay: 900ms;
+}
+#hex7{
+    animation-delay: 1050ms;
+}
+#circle{
+    animation: spin 2.5s linear infinite;
+    transform-origin: center;
+}
+#dashSpin{
+    stroke-dashoffset: 185;
+    stroke-dasharray: 185;
+    animation: dashspin 5s linear infinite;
+    transform-origin: center;
+}
+@keyframes blink{
+    0%,100%{
+        transform: scale(0.5);
+        opacity: 0;        
+    }
+    50%,60%{
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@keyframes spin{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+@keyframes dashspin {
+    0%{
+        stroke-dashoffset: 0;
+        transform: rotate(0deg);
+    }
+    50%{
+        stroke-dashoffset: -192;
+        transform: rotate(360deg);
+    }
+    75%{
+        stroke-dashoffset: 0;
+        transform: rotate(0deg);
+    }
+    100%{
+        stroke-dashoffset: -192;
+        transform: rotate(360deg);
+    }
+}
